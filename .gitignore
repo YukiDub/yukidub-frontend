@@ -1,3 +1,4 @@
 node_modules
 js/vuejs_code_split/*
 fonts/vendor
+dist
