@@ -7,11 +7,11 @@
 <template>
   <div class="anime" v-if="!loading">
     <div class="content-header">
-      <div class="cover" v-bind:style="{ 'background-image': 'url(' + animeItem.poster.original + ')' }"></div>
+      <div class="cover" v-bind:style="{ 'background-image': 'url(' + animeItem.images.original + ')' }"></div>
       <div class="row-container">
         <div class="row-information">
           <div class="warp-poster">
-            <div class="poster mx-auto" v-bind:style="{ 'background-image': 'url(' + animeItem.poster.original + ')' }"></div>
+            <div class="poster mx-auto" v-bind:style="{ 'background-image': 'url(' + animeItem.images.original + ')' }"></div>
             <div class="buttons gap-2 d-flex justify-content-center pb-2">
               <div class="btn edit" title="редактировать" v-on:click="selectedComponent = editorComponent"><i class="bi bi-gear-fill"></i></div>
               <div class="btn favoured" v-bind:class="{selected: animeItem.anime_favoured}" title="добавить в избранное"><i class="bi bi-bookmark-star-fill"></i></div>
@@ -19,26 +19,31 @@
             </div>
           </div>
           <div class="right-block">
-            <h1 class="text-sm-start">{{animeItem.name_en}} / {{animeItem.name_ru}}</h1>
+            <h1 class="text-sm-start">{{animeItem.title_en}} / {{animeItem.title_ru}}</h1>
             <div class="row mb-2 mt-sm-4 mt-md-0">
               <div class="col-auto">
                   <p>
-                    <span>Японское название: {{animeItem.name_jp}} <br/></span>
-                    {{$t('type')}}: <a href="#" v-for="typeItem in animeItem.type" v-bind:class="'tags'">{{typeItem.name}} </a><br/>
-                    {{$t('status')}}: <a href="#"></a>{{$t('status_list.' + animeItem.status)}}<br>
+                    <span>Японское название: {{animeItem.title_jp}} <br/></span>
+                    {{$t('animes.anime.type')}}: <a href="#" v-for="typeItem in animeItem.type" v-bind:class="'tags'">{{typeItem.name}} </a><br/>
+                    {{$t('animes.anime.status')}}: <a href="#"></a>{{$t('status_list.' + animeItem.status)}}<br>
                     <span v-if="animeItem.studios">Студия: <a href="#" v-for="studioItem in animeItem.studios">{{studioItem.name}} </a> <br/></span>
                     <span v-if="animeItem.episodes_released">Эпизоды: <span v-if="animeItem.episodes">{{animeItem.episodes}} \</span> {{animeItem.episodes_released}} <br></span>
                     <span v-if="animeItem.episode_duration">Продолжительность эпизода: {{animeItem.episode_duration}}<br></span>
                     <span v-if="animeItem.genres">
-                      {{$t('genres')}}:
+                      {{$t('animes.anime.genres')}}:
                       <router-link v-bind:class="'tags'" v-for="genreItem in animeItem.genres" :key="genreItem.id" :to="{name: 'animes', query: {genres: genreItem.name_en}}">{{genreItem['name_' + getLocale]}}</router-link>
                       <br/>
                     </span>
-                    <span v-if="animeItem.age_rating">Возрастной рейтинг: {{animeItem.age_rating}} <br/></span>
+                    <span v-if="animeItem.genres">
+                      {{$t('animes.anime.themes')}}:
+                      <router-link v-bind:class="'tags'" v-for="theme in animeItem.themes" :key="theme.id" :to="{name: 'animes', query: {themes: theme}}">{{theme['name_' + getLocale]}}</router-link>
+                      <br/>
+                    </span> 
+                    <span v-if="animeItem.age_rating">Возрастной рейтинг: {{$t('animes.anime.ratings.'+animeItem.age_rating)}} <br/></span>
                     <span v-if="animeItem.aired_on">Дата начала премьеры: {{new Date(animeItem.aired_on).toLocaleString('default', {year: 'numeric', month: 'long', day: 'numeric'})}}<br/></span>
                     <span v-if="animeItem.released_on">Дата выхода: {{new Date(animeItem.released_on).toLocaleString('default', {year: 'numeric', month: 'long', day: 'numeric'})}}<br/></span>
                     <span v-if="animeItem.shiki_score">Оценка на MyAnimeList: {{animeItem.shiki_score}} <br/></span>
-                    <span>Оценка на Yuki: {{animeItem.score_info.rating}} <br/></span>
+                    <!-- <span>Оценка на Yuki: {{animeItem.score_info.rating}} <br/></span> -->
                   </p>
               </div>
               <div class="col-auto rating mx-auto my-auto">
@@ -56,10 +61,12 @@
               </div>
             </div>
             <description
-                :ru="animeItem.description_ru"
-                :ru_source="animeItem.description_ru_source"
-                :en="animeItem.description_en"
-                :en_source="animeItem.description_en_source"
+                :ru="animeItem.synopsis.ru.text"
+                :ru_url="animeItem.synopsis.ru.url"
+                :ru_author="animeItem.synopsis.ru.author"
+                :en="animeItem.synopsis.en.text"
+                :en_url="animeItem.synopsis.en.url"
+                :en_auhor="animeItem.synopsis.en.author"
             />
           </div>
         </div>

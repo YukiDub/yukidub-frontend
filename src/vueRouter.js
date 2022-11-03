@@ -30,13 +30,13 @@ const routes = [
         path: '/animes',
         component: animes,
         name: 'animes',
-        meta: {'title': "Аниме", 'headerName': 'anime'}
+        meta: {'title': "Аниме", 'headerName': 'animes.title'}
     },
     {
         path: '/animes/:id',
         component: anime,
         name: 'anime',
-        meta: {'title': "Аниме", 'headerName': 'anime'}
+        meta: {'title': "Аниме", 'headerName': 'animes.title'}
     },
     {
         path: '/users',

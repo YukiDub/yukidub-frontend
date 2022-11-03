@@ -28,7 +28,7 @@
   "status_list": {
     "announced": "announced",
     "ongoing": "ongoing",
-    "released": "released"
+    "finished": "finished"
   },
   "rating": "Rating",
   "genres": "Genres",
@@ -47,5 +47,6 @@
   "all activity": "All activity",
   "wrote comments": "Wrote comments",
   "watched anime": "Watched anime",
-  "watch": "watch"
+  "watch": "watch",
+  "themes": "Themes"
 }

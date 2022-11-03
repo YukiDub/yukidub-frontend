@@ -3,29 +3,28 @@ export default {
         async loadAnimesList({commit}, page = 1, perPage = 30, filters = []) {
             let url = '/api/v1/anime?perPage=' + perPage + '&page=' + page;
 
-            let animeData = await axios.get(url).then(data => {
-                return data.data;
+            let animeData = await axios.get(url).then(response => {
+                return response.data;
             });
 
             animeData.data.forEach(anime=>{
                 anime.studios.forEach(studio=> {
-                    studio.url = '/animes?studio=' + studio.name
+                    studio.url = '/anime?studio=' + studio.name
                 })
                 anime.genres.forEach(genre=> {
-                    genre.url = '/animes?genre=' + genre.name_en
+                    genre.url = '/anime?genre=' + genre.name_en
                 })
-                anime.type.forEach(type=> {
-                    type.url = '/animes?genre=' + type.name
-                })
+
+                anime.type_url = '/anime?type=' + anime.type
             })
             commit('updateAnimePagination', animeData.meta)
-            commit('updateAnimesList', animeData)
+            commit('updateAnimesList', animeData.data)
         },
         async loadAnime(ctx, id) {
             let url = '/api/v1/anime/' + id;
 
             let anime = await axios.get(url).then(data => {
-                return data.data.data;
+                return data.data;
             });
 
             ctx.commit('updateAnime', anime)
@@ -49,7 +48,7 @@ export default {
     },
     getters: {
         animeList(state){
-            return state.animes.data;
+            return state.animes;
         },
         animePagination(state){
             return state.animePagination;

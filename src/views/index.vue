@@ -21,10 +21,10 @@
                v-for=       "anime in animeList"
                v-bind:key=  "anime.id"
                :id=         "anime.id"
-               :name=       "anime.name_ru"
+               :name=       "anime['title_' + getLocale]" 
                :type=       "anime.type"
                :genres=     "anime.genres"
-               :poster_url= "anime.poster.preview"
+               :poster_url= "anime.images.preview"
                :status=     "anime.status"
                :studios=    "anime.studios"
                :route=      "{name: 'anime', params:{id: anime.id}}"
@@ -136,7 +136,7 @@ export default {
   },
 
   methods: mapActions(['loadAnimesList']),
-  computed: mapGetters(['animeList'])
+  computed: mapGetters(['animeList', 'getLocale'])
 }
 </script>
 

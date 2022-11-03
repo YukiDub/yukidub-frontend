@@ -13,14 +13,14 @@
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
         <p class="text">{{ru}}</p>
         <p>Автор:
-          <a v-if="ru_source" :href="ru_source" class="author" target=»_blank>{{ru_source.split('/')[2]}}</a>
+          <a v-if="ru_author" :href="ru_url" class="author" target=»_blank>{{ru_author}}</a>
           <a v-else class="author">Автор неизвестен</a>
         </p>
       </div>
       <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" v-if="en">
         <p class="text">{{en}}</p>
         <p>Автор:
-          <a v-if="en_source" class="author" :href="en_source" target=»_blank>{{en_source.split('/')[2]}}</a>
+          <a v-if="en_author" class="author" :href="en_url" target=»_blank>{{en_author}}</a>
           <a v-else class="author">Автор неизвестен</a>
         </p>
       </div>
@@ -37,9 +37,11 @@ export default {
   name: "DescriptionComponent",
   props: {
     en: String,
-    en_source: String,
+    en_author: String,
+    en_url: String,
     ru: String,
-    ru_source: String,
+    ru_url: String,
+    ru_author: String,
   }
 }
 </script>

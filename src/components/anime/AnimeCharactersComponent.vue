@@ -7,7 +7,7 @@
             v-for="character in animeItem.characters"
             :key="character.id"
             :name="character.name_ru"
-            :poster_url="'/storage/images/animes/preview/1.jpg'"
+            :poster_url="'http://127.0.0.1:8081/storage/anime/preview/1.jpg'"
         />
       </div>
       <h4 class="text-center text-md-start pb-3 pt-4">ДРУГИЕ ПЕРСОНАЖИ</h4>

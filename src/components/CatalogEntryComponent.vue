@@ -10,10 +10,10 @@
       <div class="d-flex align-items-start flex-column">
         <p class="title" :title="fullName">{{slicedName}}</p>
         <p>
-          {{$t('type')}} : <router-link class="tags" v-for="type in type" v-bind:key="type.id" :to="type.url">{{type.name}} </router-link> <br/>
+          {{$t('type')}} :  {{type}}<br/>
           {{studios ? $t('studios') + ": " : ""}} <router-link class="tags" v-for="studio in studios" v-bind:key="studio.id" to="#">{{studio.name}} </router-link> <br v-if="studios"/>
           {{$t('status')}} : <a href="#">{{$t('status_list.' + status)}}</a><br/>
-          {{genres ? $t('genres') + ":" : ""}} <router-link v-if="genres" class="tags" v-for="genre in genres" v-bind:key="genre.id" :to="genre.url">{{genre['name_' + getLocale]}} </router-link>
+          <!-- {{genres ? $t('genres') + ":" : ""}} <router-link v-if="genres" class="tags" v-for="genre in genres" v-bind:key="genre.id" :to="genre.url">{{genre['name_' + getLocale]}} </router-link> -->
         </p>
       </div>
       <div class="d-flex flex-column">
@@ -49,12 +49,12 @@ import {mapGetters} from 'vuex'
       props: {
         "id":         Number,
         "route":       {
-          type: [Object, undefined],
+          // type: [Object, undefined],
           default: null
         },
         "name":       String,
         "status":     String,
-        "type":       Array,
+        "type":       String,
         "genres":     Array,
         "poster_url": String,
         "studios":    {

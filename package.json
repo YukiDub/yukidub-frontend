@@ -25,6 +25,7 @@
         "@popperjs/core": "^2.11.0",
         "bootstrap-icons": "^1.7.0",
         "core-js": "^3.6.4",
+        "dotenv": "^16.0.3",
         "node-fetch": "^2.6.6",
         "vue-i18n": "^8.26.7",
         "vue-router": "^3.5.2",
