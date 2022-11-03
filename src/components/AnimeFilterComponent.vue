@@ -18,7 +18,7 @@
               <div class="selector">
                 <div class="placeholder">
                   <div class="selected">
-                    <span>{{$t('status')}}</span>
+                    <span>{{$t('animes.anime.status')}}</span>
                   </div>
                 </div>
                 <div class="chek-box-list">
@@ -36,7 +36,7 @@
               <div class="selector">
                 <div class="placeholder">
                   <div class="selected">
-                    <span>{{$t('type')}}</span>
+                    <span>{{$t('animes.anime.type')}}</span>
                   </div>
                 </div>
                 <div class="chek-box-list">
@@ -52,7 +52,7 @@
               <div class="selector">
                 <div class="placeholder">
                   <div class="selected">
-                    <span>{{$t('genres')}}</span>
+                    <span>{{$t('animes.anime.genres')}}</span>
                   </div>
                 </div>
                 <div class="chek-box-list">
@@ -68,7 +68,7 @@
               <div class="selector">
                 <div class="placeholder">
                   <div class="selected">
-                    <span>{{$t('rating')}}</span>
+                    <span>{{$t('animes.anime.rating')}}</span>
                   </div>
                 </div>
                 <div class="chek-box-list">
@@ -102,7 +102,7 @@
               <div class="selector">
                 <div class="placeholder">
                   <div class="selected">
-                    <span>{{$t('season')}}</span>
+                    <span>{{$t('animes.anime.season')}}</span>
                   </div>
                 </div>
                 <div class="chek-box-list">
@@ -120,7 +120,7 @@
               <div class="selector">
                 <div class="placeholder">
                   <div class="selected">
-                    <span>{{$t('score')}}</span>
+                    <span>{{$t('animes.anime.score')}}</span>
                   </div>
                 </div>
                 <div class="chek-box-list">

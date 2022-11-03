@@ -15,7 +15,7 @@
 
 <script>
     export default {
-
+      name:"itemCrd"
     }
 </script>
 
@@ -26,7 +26,7 @@
     border-radius: 10px;
     padding: 1rem;
     margin-top: 1rem;
-    border-left: 14px solid #C8372D;
+    border-left: 14px solid var(--bs-red);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   }
   .card .title{

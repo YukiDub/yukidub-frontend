@@ -24,11 +24,11 @@
               <div class="col-auto">
                   <p>
                     <span>Японское название: {{animeItem.title_jp}} <br/></span>
-                    {{$t('animes.anime.type')}}: <a href="#" v-for="typeItem in animeItem.type" v-bind:class="'tags'">{{typeItem.name}} </a><br/>
-                    {{$t('animes.anime.status')}}: <a href="#"></a>{{$t('status_list.' + animeItem.status)}}<br>
-                    <span v-if="animeItem.studios">Студия: <a href="#" v-for="studioItem in animeItem.studios">{{studioItem.name}} </a> <br/></span>
-                    <span v-if="animeItem.episodes_released">Эпизоды: <span v-if="animeItem.episodes">{{animeItem.episodes}} \</span> {{animeItem.episodes_released}} <br></span>
-                    <span v-if="animeItem.episode_duration">Продолжительность эпизода: {{animeItem.episode_duration}}<br></span>
+                    {{$t('animes.anime.type')}}: <a href="#" class="tags">{{$t('animes.anime.types.'+animeItem.type)}} </a><br/>
+                    {{$t('animes.anime.status')}}: <a href="#" class="tags">{{$t('status_list.' + animeItem.status)}} </a><br>
+                    <span v-if="animeItem.studios">{{$t('animes.anime.studios')}}: <a href="#" class="tags" v-for="studios in animeItem.studios">{{studios.name}} </a> <br/></span>
+                    <span v-if="animeItem.episodes">{{$t('animes.anime.episodes')}}: <span v-if="animeItem.episodes">{{animeItem.episodes_aired}} \</span> {{animeItem.episodes}} <br></span>
+                    <span v-if="animeItem.duration">{{$t('animes.anime.duration')}}: {{animeItem.duration}}<br></span>
                     <span v-if="animeItem.genres">
                       {{$t('animes.anime.genres')}}:
                       <router-link v-bind:class="'tags'" v-for="genreItem in animeItem.genres" :key="genreItem.id" :to="{name: 'animes', query: {genres: genreItem.name_en}}">{{genreItem['name_' + getLocale]}}</router-link>
@@ -39,10 +39,10 @@
                       <router-link v-bind:class="'tags'" v-for="theme in animeItem.themes" :key="theme.id" :to="{name: 'animes', query: {themes: theme}}">{{theme['name_' + getLocale]}}</router-link>
                       <br/>
                     </span> 
-                    <span v-if="animeItem.age_rating">Возрастной рейтинг: {{$t('animes.anime.ratings.'+animeItem.age_rating)}} <br/></span>
-                    <span v-if="animeItem.aired_on">Дата начала премьеры: {{new Date(animeItem.aired_on).toLocaleString('default', {year: 'numeric', month: 'long', day: 'numeric'})}}<br/></span>
-                    <span v-if="animeItem.released_on">Дата выхода: {{new Date(animeItem.released_on).toLocaleString('default', {year: 'numeric', month: 'long', day: 'numeric'})}}<br/></span>
-                    <span v-if="animeItem.shiki_score">Оценка на MyAnimeList: {{animeItem.shiki_score}} <br/></span>
+                    <span v-if="animeItem.age_rating">Возрастной рейтинг: <a href="#" class="tags">{{$t('animes.anime.ratings.'+animeItem.age_rating)}}</a> <br/></span>
+                    <span v-if="animeItem.aired.from">Дата начала премьеры: {{new Date(animeItem.aired.from).toLocaleString('default', {year: 'numeric', month: 'long', day: 'numeric'})}}<br/></span>
+                    <span v-if="animeItem.aired.to">Дата выхода: {{new Date(animeItem.aired.to).toLocaleString('default', {year: 'numeric', month: 'long', day: 'numeric'})}}<br/></span>
+                    <span v-if="animeItem.mal_score">Оценка на MyAnimeList: {{animeItem.mal_score}} <br/></span>
                     <!-- <span>Оценка на Yuki: {{animeItem.score_info.rating}} <br/></span> -->
                   </p>
               </div>
@@ -157,6 +157,7 @@ export default {
   left: 0;
   top: 72px;
   filter: drop-shadow(0px 4px 52px rgba(0, 0, 0, 0.25));
+  z-index: -100;
 }
 .anime>.content-header>.cover {
   min-height: 43.6rem;
@@ -224,6 +225,13 @@ export default {
   -webkit-box-flex: 0;
   -ms-flex: 0 0 276px;
   flex: 0 0 276px;
+}
+
+.anime>.content-header>.row-container>.row-information>.warp-poster>.buttons>.btn{
+  color: #FFFFFF;
+}
+.anime>.content-header>.row-container>.row-information>.warp-poster>.buttons>.btn.watch{
+  background: var(--focus-color);
 }
 .anime-container-btn {
   width: 100%;

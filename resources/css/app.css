@@ -276,7 +276,7 @@ p {
     padding-top: 1.4rem;
 }
 .navigation i {
-    color: #797c84;
+    color: var(--bs-secondary);
     font-size: 1.4rem;
 }
 .navigation>.logo {
@@ -419,6 +419,9 @@ p {
     background: var(--block-color);
     border-radius: 14px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.tags{
+    color: #FFFF;
 }
 .tags + .tags::before {
     content: ", ";
